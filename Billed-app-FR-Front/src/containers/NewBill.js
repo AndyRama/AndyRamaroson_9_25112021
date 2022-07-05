@@ -25,7 +25,7 @@ export default class NewBill {
     formData.append('file', file)
     formData.append('email', email)
 
-    if(file.type=="image/jpeg" || file.type=="image/jpg" || file.type=="image/png"){
+    if(file.type=="image/jpeg" || file.type=="image/jpg" || file.type=="image/png") {
     this.store
       .bills()
       .create({
@@ -45,6 +45,7 @@ export default class NewBill {
       alert("Only jpg/jpeg and png files are allowed!");
     }
   }
+  
   handleSubmit = e => {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
