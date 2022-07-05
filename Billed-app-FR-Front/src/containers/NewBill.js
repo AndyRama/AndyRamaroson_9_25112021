@@ -25,6 +25,7 @@ export default class NewBill {
     formData.append('file', file)
     formData.append('email', email)
 
+    if(file.type=="image/jpeg" || file.type=="image/jpg" || file.type=="image/png"){
     this.store
       .bills()
       .create({
@@ -33,12 +34,16 @@ export default class NewBill {
           noContentType: true
         }
       })
-      .then(({fileUrl, key}) => {
-        console.log(fileUrl)
+      .then(({filePath, key}) => {
+        console.log(filePath)
         this.billId = key
-        this.fileUrl = fileUrl
+        this.fileUrl = filePath
         this.fileName = fileName
       }).catch(error => console.error(error))
+    } else {
+      e.target.value = null;
+      alert("Only jpg/jpeg and png files are allowed!");
+    }
   }
   handleSubmit = e => {
     e.preventDefault()
