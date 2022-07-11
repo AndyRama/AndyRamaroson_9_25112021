@@ -14,7 +14,7 @@
 import router from "../app/Router.js";
 import Bills from "../containers/Bills.js";
 
-jest.mock("../app/store", () => mockStore);
+jest.mock("../app/Store", () => mockStore);
 
 beforeEach(()=> {
   // simulate the connection on the Employee page by setting the localStorage
@@ -29,7 +29,7 @@ describe('Bills Unit test suites', () => {
   describe("Given I am connected as an employee", () => {
     describe("When I am on Bills Page", () => {
       test("Then bill icon in vertical layout should be highlighted", async () => { 
-             
+
         const root = document.createElement("div")
         root.setAttribute("id", "root")
         document.body.append(root)
@@ -66,7 +66,7 @@ describe('Bills Unit test suites', () => {
         //vérifie que le clic est bien écouté
         expect(handleClickNewBill).toHaveBeenCalled()
         //vérifie que la page est bien ouverte sur le NewBill 
-        await waitFor(() => screen.getByTestId('form-new-bill'))
+        await waitFor(() => screen.getAllByTestId('form-new-bill'))
         expect(screen.getByTestId('form-new-bill')).toBeTruthy()             
       })
     })
@@ -89,7 +89,7 @@ describe('Bills Unit test suites', () => {
         const btnNewBill = screen.getByTestId("btn-new-bill")
         expect(btnNewBill).toBeTruthy()
         // Test for btnEye
-        const btnEye= screen.getByTestId("icon-eye")
+        const btnEye= screen.getAllByTestId("icon-eye")
         expect(btnEye).not.toHaveLength(0)
       })
     })
