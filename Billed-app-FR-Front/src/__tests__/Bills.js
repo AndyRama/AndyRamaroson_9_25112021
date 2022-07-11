@@ -15,6 +15,7 @@ import Bills from "../containers/Bills.js";
 jest.mock("../app/store", () => mockStore);
 
 beforeEach(()=> {
+  // simulate the connection on the Employee page by setting the localStorage
   Object.defineProperty(window, 'localStorage', { value: localStorageMock })
   window.localStorage.setItem('user', JSON.stringify({
     type: 'Employee'
@@ -36,13 +37,26 @@ describe('Bills Unit test suites', () => {
         //to-do write expect expression
         expect(windowIcon).toHaveClass('active-icon')
       })
-      
+
       test("Then bills should be ordered from earliest to latest", () => {
         document.body.innerHTML = BillsUI({ data: bills })
         const dates = screen.getAllByText(/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/i).map(a => a.innerHTML)
         const antiChrono = (a, b) => ((a < b) ? 1 : +1)
         const datesSorted = [...dates].sort(antiChrono)
         expect(dates).toEqual(datesSorted)
+      })
+    })
+    
+    describe("When i click on New",() => {
+
+      test("a New page should be open", async () => {
+        //displays the expense reports page
+        //récupération bouton
+        //recuperation instance class Bills 
+        //eventListener du bouton
+        //vérifie que le clic est bien écouté
+        //vérifie que la page est bien ouverte sur le NewBill
+              
       })
     })
   })
