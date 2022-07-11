@@ -23,7 +23,6 @@ beforeEach(()=> {
 })
 
 describe('Bills Unit test suites', () => {
-
   describe("Given I am connected as an employee", () => {
     describe("When I am on Bills Page", () => {
       test("Then bill icon in vertical layout should be highlighted", async () => {      
@@ -75,18 +74,18 @@ describe('Bills Unit test suites', () => {
   describe("Given I am a user connected as Employee", () => {
     describe("When I navigate to Bills", () => {
       test("fetches bills from mock API GET", async () => {
-        // localStorage.setItem("user", JSON.stringify({ type: "Admin", email: "a@a" }));
         const root = document.createElement("div")
         root.setAttribute("id", "root")
         document.body.append(root)
         router()
         window.onNavigate(ROUTES_PATH.Bills)
+        // test for page
         await waitFor(() => screen.getByText("Mes notes de frais"))
-        // btnNewBill
+        // test for btn New Bill
         const btnNewBill = screen.getByTestId("btn-new-bill")
-        // btnEye
-        const btnEye= screen.getByTestId("icon-eye")
         expect(btnNewBill).toBeTruthy()
+        // Test for btnEye
+        const btnEye= screen.getByTestId("icon-eye")
         expect(btnEye).not.toHaveLength(0)
       })
     })
