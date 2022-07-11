@@ -46,7 +46,7 @@ describe('Bills Unit test suites', () => {
         expect(dates).toEqual(datesSorted)
       })
     })
-    
+
     describe("When i click on New",() => {
 
       test("a New page should be open", async () => {
@@ -55,8 +55,7 @@ describe('Bills Unit test suites', () => {
         //recuperation instance class Bills 
         //eventListener du bouton
         //vérifie que le clic est bien écouté
-        //vérifie que la page est bien ouverte sur le NewBill
-              
+        //vérifie que la page est bien ouverte sur le NewBill              
       })
     })
   })
