@@ -70,6 +70,34 @@ describe('Bills Unit test suites', () => {
         expect(screen.getByTestId('form-new-bill')).toBeTruthy()             
       })
     })
+
+    describe("When I Click on IconEye", () => {
+      test("Then the preview modal should open", async ()=> {
+        
+        const onNavigate = (pathname) => {
+          document.body.innerHTML = ROUTES({ pathname })
+        }
+        //recuperation instance class Bills 
+        const billsEmulation = new Bills({
+          document, onNavigate, store: null, localStorage: window.localStorage
+        })
+        //displays the expense reports page
+        document.body.innerHTML = BillsUI({data: [bills[0]]})
+    
+        const modale = document.getElementById('modaleFile')
+        $.fn.modal = jest.fn(() => modale.classList.add("show"))
+    
+        const iconEye = screen.getByTestId('icon-eye')
+        const handleClickIconEye_1 = jest.fn(() => billsEmulation.handleClickIconEye(iconEye))
+        //eventListener sur iconEye
+        iconEye.addEventListener('click', handleClickIconEye_1) 
+        userEvent.click(iconEye)
+        //vérifie que le clic est bien écouté
+        expect(handleClickIconEye_1).toHaveBeenCalled()
+        //vérifie que la modal est bien ouverte sur le NewBill 
+        expect(modale).toHaveClass("show")
+      })
+    })
   })
 })
 
