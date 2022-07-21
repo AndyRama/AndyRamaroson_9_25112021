@@ -52,7 +52,7 @@ export default () => {
       rootDiv.innerHTML = ROUTES({ pathname, loading: true })
       const bills = new Dashboard({ document, onNavigate, store, bills: [], localStorage })
       bills.getBillsAllUsers().then(bills => {
-          rootDiv.innerHTML = DashboardUI({data: {bills}})
+          rootDiv.innerHTML = DashboardUI({data: { bills }})
           new Dashboard({document, onNavigate, store, bills, localStorage})
         }).catch(error => {
         rootDiv.innerHTML = ROUTES({ pathname, error })

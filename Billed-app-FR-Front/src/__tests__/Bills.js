@@ -72,8 +72,7 @@ describe('Bills Unit test suites', () => {
     })
 
     describe("When I Click on IconEye", () => {
-      test("Then the preview modal should open", async ()=> {
-        
+      test("Then the preview modal should open", async ()=> {        
         const onNavigate = (pathname) => {
           document.body.innerHTML = ROUTES({ pathname })
         }

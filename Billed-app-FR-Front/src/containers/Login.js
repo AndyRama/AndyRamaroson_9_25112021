@@ -78,12 +78,14 @@ export default class Login {
     if (this.store) {
       return this.store
       .users()
-      .create({data:JSON.stringify({
-        type: user.type,
-        name: user.email.split('@')[0],
-        email: user.email,
-        password: user.password,
-      })})
+      .create({
+        data:JSON.stringify({
+          type: user.type,
+          name: user.email.split('@')[0],
+          email: user.email,
+          password: user.password,
+        })
+      })
       .then(() => {
         console.log(`User with ${user.email} is created`)
         return this.login(user)
