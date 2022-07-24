@@ -45,7 +45,29 @@ describe("NewBill Unit test suites", () => {
             },
           })
           expect(newFile.files[0].type).toMatch(/(image\/jpg)|(image\/jpeg)|(image\/png)/gm)
-          // window.alert = jsdomAlert;  // restore the jsdom alert
+        })
+
+        test("then file should not be an image", ( )=> {
+          const jsdomAlert = window.alert;
+          window.alert = () => { };
+
+          // Récupération input file
+          const newFile = screen.getByTestId('file')
+          // Récupération de nouvelle instance de NewBill
+          const onNavigate = (pathname) => document.body.innerHTML = ROUTES({ pathname })
+          const newBillEmulation = new NewBill({ document, onNavigate, store: mockStore, localStorage: window.localStorage })
+          const handleChangeFile = jest.fn((e) => newBillEmulation.handleChangeFile(e))
+          // addEventListener handleChangeFile
+          newFile.addEventListener("change", handleChangeFile)
+          userEvent.click(newFile)
+          //  Vérifié si le fichier est bien une image
+          fireEvent.change(newFile, {
+            target: {
+              files: [new File(['(⌐□_□)'], 'chucknorris.txt', {type: 'text/plain'})],
+            },
+          })
+          expect(newFile.files[0].type).not.toMatch(/(image\/jpg)|(image\/jpeg)|(image\/png)/gm)
+          window.alert = jsdomAlert; // restore the jsdom alert
         })
       })
     })
