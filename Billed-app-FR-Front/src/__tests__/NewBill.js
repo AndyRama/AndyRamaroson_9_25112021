@@ -9,7 +9,7 @@ import { localStorageMock } from "../__mocks__/localStorage.js"
 import mockStore from "../__mocks__/store"
 import { ROUTES, ROUTES_PATH } from "../constants/routes.js";
 import userEvent from "@testing-library/user-event";
-//  import router from "../app/Router"
+import router from "../app/Router"
 
 jest.mock("../app/Store", () => mockStore)
 
@@ -27,6 +27,10 @@ beforeEach(() => {
 describe("NewBill Unit test suites", () => {
   describe("Given I am connected as an employee", () => {
     describe("When I am on NewBill page", () => {
+      // Envoyer un formulaire complet (NewBill.handleSubmit)
+      // Justificatif doit etre conforme à l'extension jpg jepg png
+      // Justificatif ne doit pas être un pdf
+
       describe("When I try to load a picture", () => {
         test("Then file sould be an picture", () => {
           // Récupération input file
@@ -69,7 +73,34 @@ describe("NewBill Unit test suites", () => {
           expect(newFile.files[0].type).not.toMatch(/(image\/jpg)|(image\/jpeg)|(image\/png)/gm)
           window.alert = jsdomAlert; // restore the jsdom alert
         })
+
+        test("Then ...", () => {
+          const html = NewBillUI()
+          document.body.innerHTML = html
+        })
       })
     })
   })
 })
+
+// TEST NewBill submit form
+describe("NewBill Integration Test Suites", () => {
+  describe("Given I am auser connected as an employee", () => {
+    describe("When I am on NewBill", () => { 
+      test("Then I submit completed NewBill form and I am redirected on Bill, methode Post", async() => {}
+      // route
+      // value for Expense-name
+      // value for Datapicker
+      // value for Amount
+      // value for Vat
+      // value for Pct
+      // File and fireEvent
+      // Form Submission
+      
+      )
+    })
+  })
+})
+// API
+// 404
+// 500
