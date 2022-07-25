@@ -27,10 +27,6 @@ beforeEach(() => {
 describe("NewBill Unit test suites", () => {
   describe("Given I am connected as an employee", () => {
     describe("When I am on NewBill page", () => {
-      // Envoyer un formulaire complet (NewBill.handleSubmit)
-      // Justificatif doit etre conforme à l'extension jpg jepg png
-      // Justificatif ne doit pas être un pdf
-
       describe("When I try to load a picture", () => {
         test("Then file sould be an picture", () => {
           // Récupération input file
@@ -73,11 +69,6 @@ describe("NewBill Unit test suites", () => {
           expect(newFile.files[0].type).not.toMatch(/(image\/jpg)|(image\/jpeg)|(image\/png)/gm)
           window.alert = jsdomAlert; // restore the jsdom alert
         })
-
-        test("Then ...", () => {
-          const html = NewBillUI()
-          document.body.innerHTML = html
-        })
       })
     })
   })
@@ -87,20 +78,46 @@ describe("NewBill Unit test suites", () => {
 describe("NewBill Integration Test Suites", () => {
   describe("Given I am auser connected as an employee", () => {
     describe("When I am on NewBill", () => { 
-      test("Then I submit completed NewBill form and I am redirected on Bill, methode Post", async() => {}
+      test("Then I submit completed NewBill form and I am redirected on Bill, methode Post", async() => {
       // route
+      document.body.innerHTML = `<div id="root"></div>`;
+      router()
+      window.onNavigate(ROUTES_PATH.NewBill)
       // value for Expense-name
-      // value for Datapicker
+      const expenseName = screen.getByTestId("expense-name")
+      expenseName.value = 'vol'
+      // value for Datepicker
+      const datepicker = screen.getByTestId("datepicker")
+      datepicker.value = '2022-07-25'
       // value for Amount
+      const amount = screen.getByTestId("amount")
+      amount.value = '250'
       // value for Vat
+      const vat = screen.getByTestId("vat")
+      vat.value ='30'
       // value for Pct
+      const pct = screen.getByTestId("pct")
+      pct.value ='40'
       // File and fireEvent
+      const file = screen.getByTestId("file")
+      fireEvent.change(file, {
+        target: {
+          files: [new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png'})],
+        },
+      })
       // Form Submission
-      
-      )
+      const formSubmission = screen.getByTestId("form-new-bill")
+      const newBillEmulation = new NewBill({ document, onNavigate, store: mockStore, localStorage: window.localStorage })
+     
+      const handleSubmit = jest.fn((e) => newBillEmulation.handleSubmit(e))
+      // addEventListener on form
+      formSubmission.addEventListener('submit', handleSubmit)
+      fireEvent.submit(formSubmission)
+      expect(handleSubmit).toHaveBeenCalled()
+      await waitFor(() => screen.getAllByText("Mes notes de frais"))
+      expect(screen.getByTestId('btn-new-bill')).toBeTruthy()
+     })
     })
   })
 })
-// API
-// 404
-// 500
+
