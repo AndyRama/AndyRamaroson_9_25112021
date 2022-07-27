@@ -158,6 +158,27 @@ describe("Given that I am a user on login page", () => {
     });
   });
 
+  // describe("When I do fill fields in incorrect password and I click on employee button Login In", () => {
+  //   test("Then it should renders Login page", () => {
+  //     document.body.innerHTML = LoginUI();
+
+  //     const inputEmailUser = screen.getByTestId("employee-email-input");
+  //     fireEvent.change(inputEmailUser, { target: { value: "andy@gmail.com" } });
+  //     expect(inputEmailUser.value).toBe("andy@gmail.com");
+
+  //     const inputPasswordUser = screen.getByTestId("employee-password-input");
+  //     fireEvent.change(inputPasswordUser, { target: { value: "querty" } });
+  //     expect(inputPasswordUser.value).not.toEqual("azerty");
+
+  //     const form = screen.getByTestId("form-employee");
+  //     const handleLogin = jest.fn((e) => e.preventDefault());
+
+  //     form.addEventListener("submit", handleLogin);
+  //     fireEvent.submit(form);
+  //     expect(screen.getByTestId("form-employee")).toBeTruthy();
+  //   });
+  // });
+
   describe("When I do fill fields in correct format and I click on admin button Login In", () => {
     test("Then I should be identified as an HR admin in app", () => {
       document.body.innerHTML = LoginUI();
