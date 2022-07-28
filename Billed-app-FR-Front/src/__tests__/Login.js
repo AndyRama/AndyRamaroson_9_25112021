@@ -158,8 +158,8 @@ describe("Given that I am a user on login page", () => {
     });
   });
 
-  // describe("When I do fill fields in incorrect password and I click on employee button Login In", () => {
-  //   test("Then it should renders Login page", () => {
+  // describe("When I create a user with a valid email and bad password and I click on employee button Login In", () => {
+  //   test("Then it should renders message error Login page", () => {
   //     document.body.innerHTML = LoginUI();
 
   //     const inputEmailUser = screen.getByTestId("employee-email-input");

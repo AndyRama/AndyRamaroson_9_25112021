@@ -31,7 +31,7 @@ Pas besoin d'ajouter de tests.
 Le rapport de couverture de branche de Jest indique que le fichiers suivants ne sont pas couverts (cf. copie d'écran) :
 
 ### TEST  
-  ❌ composant views/Bills : Le taux de couverture est à 100% néanmoins si tu regardes le premier test il manque la mention “expect”. Ajoute cette mention pour que le test vérifie bien ce que l’on attend de lui.  
+  ✅ composant views/Bills : Le taux de couverture est à 100% néanmoins si tu regardes le premier test il manque la mention “expect”. Ajoute cette mention pour que le test vérifie bien ce que l’on attend de lui.  
 
 ### TEST  
 ✅ composant  views/NewBill (réalisé par Garance)  
@@ -41,3 +41,14 @@ Le rapport de couverture de branche de Jest indique que le fichiers suivants ne 
     ✅ couvrir les tests U Bills : clic sur l'icone Oeil     
     ✅ couvrir les tests U Bills : clic sur nouvelle note de frais 
 
+### TEST
+✅ composant container/NewBill : 
+  ✅ couvrir tests U NewBill : verification du type de fichier en FILE
+  ✅ couvrir un maximum de "statements" : c'est simple, il faut que le rapport de couverture du fichier container/NewBill soit vert (accessible à cette adresse( http://127.0.0.1:8080/coverage/lcov-report/containers/NewBill.js.html ) quand tu auras lancé le serveur). Cela devrait permettre d'obtenir un taux de couverture aux alentours de 80% dans la colonne "statements".
+✅ ajouter un test d'intégration POST new bill.
+✅ composant views/VerticalLayout (réalisé par Garance)
+
+Respecter la structure des tests unitaires en place : Given / When / Then avec le résultat attendu. Un exemple est donné dans le squelette du test tests/Bills.js
+
+# Parcours Employé
+✅ Rédiger un plan de test E2E pour le parcours employé. Ce plan doit comprendre l'ensemble des scenarios possibles et doit respecter le format habituel.
