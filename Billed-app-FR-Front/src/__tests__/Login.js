@@ -158,26 +158,26 @@ describe("Given that I am a user on login page", () => {
     });
   });
 
-  // describe("When I create a user with a valid email and bad password and I click on employee button Login In", () => {
-  //   test("Then it should renders message error Login page", () => {
-  //     document.body.innerHTML = LoginUI();
+  describe("When I create a user with a valid email and bad password and I click on admin button Login In", () => {
+    test("Then it should renders message error Login page", () => {
+      document.body.innerHTML = LoginUI();
 
-  //     const inputEmailUser = screen.getByTestId("employee-email-input");
-  //     fireEvent.change(inputEmailUser, { target: { value: "andy@gmail.com" } });
-  //     expect(inputEmailUser.value).toBe("andy@gmail.com");
+      const inputEmailUser = screen.getByTestId("admin-email-input");
+      fireEvent.change(inputEmailUser, { target: { value: "andy@gmail.com" } });
+      expect(inputEmailUser.value).toBe("andy@gmail.com");
 
-  //     const inputPasswordUser = screen.getByTestId("employee-password-input");
-  //     fireEvent.change(inputPasswordUser, { target: { value: "querty" } });
-  //     expect(inputPasswordUser.value).not.toEqual("azerty");
+      const inputPasswordUser = screen.getByTestId("admin-password-input");
+      fireEvent.change(inputPasswordUser, { target: { value: "querty" } });
+      expect(inputPasswordUser.value).not.toEqual("azerty");
 
-  //     const form = screen.getByTestId("form-employee");
-  //     const handleLogin = jest.fn((e) => e.preventDefault());
+      const form = screen.getByTestId("form-admin");
+      const handleLogin = jest.fn((e) => e.preventDefault());
 
-  //     form.addEventListener("submit", handleLogin);
-  //     fireEvent.submit(form);
-  //     expect(screen.getByTestId("form-employee")).toBeTruthy();
-  //   });
-  // });
+      form.addEventListener("submit", handleLogin);
+      fireEvent.submit(form);
+      expect(screen.getByTestId("form-admin")).toBeTruthy();
+    });
+  });
 
   describe("When I do fill fields in correct format and I click on admin button Login In", () => {
     test("Then I should be identified as an HR admin in app", () => {
