@@ -210,21 +210,11 @@ describe("Given that I am a user on login page", () => {
       form.addEventListener("submit", handleSubmit);
       fireEvent.submit(form);
       expect(handleSubmit).toHaveBeenCalled();
-      // expect(window.localStorage.setItem).toHaveBeenCalled();
-      // expect(window.localStorage.setItem).toHaveBeenCalledWith(
-      //   "user",
-      //   JSON.stringify({
-      //     type: "Employee",
-      //     email: inputData.email,
-      //     password: inputData.password,
-      //     status: "connected",
-      //   })
-      // );
-      const user = JSON.stringify({
-        type: "Employee",
-        email: inputData.email,
-        password: inputData.password,
-        status: "connected",
+        const user = JSON.stringify({
+          type: "Employee",
+          email: inputData.email,
+          password: inputData.password,
+          status: "connected",
       });
       const storeCreateUser = jest.fn();
       const createUser = new Login({
