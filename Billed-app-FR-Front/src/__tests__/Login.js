@@ -215,15 +215,15 @@ describe("Given that I am a user on login page", () => {
           email: inputData.email,
           password: inputData.password,
           status: "connected",
-      });
-      const storeCreateUser = jest.fn();
-      const createUser = new Login({
-        document,
-        localStorage: window.localStorage,
-        onNavigate,
-        PREVIOUS_LOCATION,
-        storeCreateUser,
-      });
+        });
+        const storeCreateUser = jest.fn();
+        const createUser = new Login({
+          document,
+          localStorage: window.localStorage,
+          onNavigate,
+          PREVIOUS_LOCATION,
+          storeCreateUser,
+        });
       createUser.createUser(user);
     });
   });
