@@ -15,6 +15,7 @@ export default class NewBill {
     this.billId = null
     new Logout({ document, localStorage, onNavigate })
   }
+
   handleChangeFile = e => {
     e.preventDefault()
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
@@ -35,11 +36,12 @@ export default class NewBill {
         }
       })
       .then(({filePath, key}) => {
-        console.log(filePath)
+        // console.log(filePath)
         this.billId = key
         this.fileUrl = filePath
         this.fileName = fileName
-      }).catch(error => console.error(error))
+      })
+      .catch(error => console.error(error))
     } else {
       e.target.value = null;
       alert("Only jpg/jpeg and png files are allowed!");
@@ -57,7 +59,7 @@ export default class NewBill {
       amount: parseInt(e.target.querySelector(`input[data-testid="amount"]`).value),
       date:  e.target.querySelector(`input[data-testid="datepicker"]`).value,
       vat: e.target.querySelector(`input[data-testid="vat"]`).value,
-      pct: parseInt(e.target.querySelector(`input[data-testid="pct"]`).value) || 20,
+      pct: parseInt(e.target.querySelector(`input[data-testid="pct"]`).value) | 20,
       commentary: e.target.querySelector(`textarea[data-testid="commentary"]`).value,
       fileUrl: this.fileUrl,
       fileName: this.fileName,
@@ -76,7 +78,7 @@ export default class NewBill {
        .then(() => {
           this.onNavigate(ROUTES_PATH['Bills'])
         })
-        .catch(error => console.error(error))
+        // .catch(error => console.error(error))
     }
   }
 }

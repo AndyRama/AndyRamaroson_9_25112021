@@ -71,6 +71,8 @@ describe('Bills Unit test suites', () => {
       })
     })
 
+
+
     describe("When I Click on IconEye", () => {
       test("Then the preview modal should open", async ()=> {        
         const onNavigate = (pathname) => {
@@ -97,6 +99,34 @@ describe('Bills Unit test suites', () => {
         expect(modale).toHaveClass("show")
       })
     })
+    describe("When I Click on other IconEye", () => {
+      test("Then the preview match the correct modal should open", async ()=> {        
+        const firesStore = null
+        //recuperation instance class Bills 
+        const billsEmulation = new Bills({
+          document, onNavigate, firesStore, localStorage: window.localStorage
+        })
+        // document.body.innerHTML = BillsUI({ data: [bills[0]] })
+        // Implementation typages simulés pour fonct async
+        $.fn.modal = jest.fn()
+        //Récupérer les icons eyes
+        const handleClickIconEye = jest.fn(billsEmulation.handleClickIconEye)
+        //Récupérer les instances    
+        const iconEyes = screen.getAllByTestId('icon-eye')
+        //eventListener sur les iconEyes
+        iconEyes.forEach((icon) => {
+          icon.addEventListener('click', (e) => handleClickIconEye(icon)) 
+          userEvent.click(icon)
+        })
+        expect(() => handleClickIconEye.toBeThrow())  
+        expect(() => handleClickIconEye.toBeThrow(error))
+        //vérifie que le clic est bien écouté
+        expect(handleClickIconEye).toHaveBeenCalled()
+        //vérifie que la bonne modal est bien ouverte sur le NewBill 
+        const modale = document.getElementById('modaleFile')
+        expect(modale).toHaveClass("show")
+      })
+    })
   })
 })
 
@@ -120,7 +150,6 @@ describe('Bills Unit test suites', () => {
         expect(btnEye).not.toHaveLength(0)
       })
     })
-
     describe("When an error occurs on API", () => {
       beforeEach(() => {
         jest.spyOn(mockStore, "bills")
@@ -151,7 +180,6 @@ describe('Bills Unit test suites', () => {
         const message = await screen.getByText(/Erreur 404/)
         expect(message).toBeTruthy()
       })
-
       test("fetches messages from an API and fails with 500 message error", async () => {
 
         mockStore.bills.mockImplementationOnce(() => {
